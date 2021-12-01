@@ -1,0 +1,64 @@
+files:
+- installer: https://m1.ppy.sh/r/osu!install.exe
+game:
+  exe: drive_c/osu/osu!.exe
+  prefix: $GAMEDIR
+installer:
+- task:
+    arch: win64
+    description: Setting up wine prefix
+    name: create_prefix
+    prefix: $GAMEDIR
+- task:
+    arch: win64
+    description: Applying a registry tweak
+    key: HelBuflen
+    name: set_regedit
+    path: HKEY_CURRENT_USER\Software\Wine\DirectSound
+    prefix: $GAMEDIR
+    value: '512'
+- merge:
+    dst: $GAMEDIR/drive_c/osu/
+    src: installer
+- task:
+    app: win10
+    arch: win64
+    description: Changing reported Windows version to Windows 10
+    name: winetricks
+    prefix: $GAMEDIR
+- task:
+    app: dotnet48
+    arch: win64
+    description: Installing .NET Framework 4.8
+    name: winetricks
+    prefix: $GAMEDIR
+- task:
+    app: gdiplus
+    description: Installing GDI+ for graphical fixes
+    name: winetricks
+    prefix: $GAMEDIR
+- task:
+    app: corefonts vlgothic meiryo cjkfonts
+    arch: win64
+    description: Installing additional fonts for proper font display
+    name: winetricks
+    prefix: $GAMEDIR
+- task:
+    app: win10
+    arch: win64
+    description: Changing reported Windows version to Windows 10
+    name: winetricks
+    prefix: $GAMEDIR
+- task:
+    arch: win64
+    description: Installing osu!
+    exclude_processes: osu!install.exe osu!.exe
+    executable: installer
+    name: wineexec
+- task:
+    arch: win64
+    name: winekill
+    prefix: $GAMEDIR
+wine:
+  dxvk: true
+  esync: true
