@@ -14,5 +14,3 @@ The only modification is the gst-plugins, if you don't trust it, use your system
 I recommend you use pipewire to eliminate audio latency (and to just get rid of pulseaudio ew)
 
 ## Manual installation
-
-I'm not writing this portion of the README right now. Check back some other time.
