@@ -8,10 +8,11 @@ It (tries) to install osu! in Lutris, but due to how the osu! installer closes, 
 `osu-windows-fix.yaml` is an attempt to (somewhat) solve that issue, but it requires some manual intervention.
 You must install osu! after Lutris claims the install is complete.
 
-lutris-fshack wine builds seem to be broken when used on osu!
+Lutris wine builds seem to be broken when used on osu!, so I have included a specialized version of wine made by me.
+The only modification is the gst-plugins, if you don't trust it, use your system's wine-staging.
 
 I recommend you use pipewire to eliminate audio latency (and to just get rid of pulseaudio ew)
 
 ## Manual installation
 
-So, you don't want to use Lutris? Well too bad, I'm not writing this portion of the README right now. Check back some other time.
+I'm not writing this portion of the README right now. Check back some other time.
