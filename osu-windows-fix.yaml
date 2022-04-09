@@ -7,6 +7,8 @@ installer:
 - task:
     arch: win64
     description: Setting up wine prefix
+    install_gecko: false
+    install_mono: false
     name: create_prefix
     prefix: $GAMEDIR
 - task:
@@ -20,12 +22,6 @@ installer:
 - merge:
     dst: $GAMEDIR/drive_c/osu/
     src: installer
-- task:
-    app: win10
-    arch: win64
-    description: Changing reported Windows version to Windows 10
-    name: winetricks
-    prefix: $GAMEDIR
 - task:
     app: dotnet48
     arch: win64
@@ -44,11 +40,24 @@ installer:
     name: winetricks
     prefix: $GAMEDIR
 - task:
+    arch: win64
+    description: Installing Osu
+    exclude_processes: osu!install.exe
+    executable: $GAMEDIR/drive_c/osu/osu!install.exe
+    include_processes: osu!.exe
+    name: wineexec
+- task:
     app: win10
     arch: win64
     description: Changing reported Windows version to Windows 10
     name: winetricks
     prefix: $GAMEDIR
+- task:
+    arch: win64
+    name: winekill
+    prefix: $GAMEDIR
+system:
+  env:
+    PULSE_LATENCY_MSEC: 30
 wine:
-  dxvk: true
-  esync: true
+  version: lutris-osu-2-x86_64
