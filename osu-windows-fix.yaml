@@ -7,7 +7,6 @@ installer:
 - task:
     arch: win64
     description: Setting up wine prefix
-    install_gecko: false
     install_mono: false
     name: create_prefix
     prefix: $GAMEDIR
